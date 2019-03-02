@@ -56,7 +56,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="wv3-S5-G6q" kind="show" id="eud-Cg-0xg"/>
+                                            <segue destination="wv3-S5-G6q" kind="show" identifier="loginButtonSegue" id="QUR-1p-IjX"/>
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Qyf-r6-Zvk" userLabel="bottom buttons">
@@ -119,28 +119,47 @@
                     <connections>
                         <outlet property="forgotPasswordButtonOutlet" destination="Mlu-4n-hQf" id="YLA-rg-0Gh"/>
                         <outlet property="forgotUsernameButtonOutlet" destination="e6d-Zm-820" id="vna-8x-Ogp"/>
-                        <outlet property="username" destination="Vva-xP-d9p" id="fHK-zC-7oa"/>
-                        <segue destination="wv3-S5-G6q" kind="show" identifier="segueFromLoginToLanding" id="O2B-g4-pdH"/>
+                        <outlet property="passwordField" destination="vxR-nc-wRN" id="85i-WT-NBY"/>
+                        <outlet property="usernameField" destination="Vva-xP-d9p" id="Ni1-oU-cEl"/>
+                        <segue destination="wv3-S5-G6q" kind="show" identifier="mySegue" id="3he-r0-EAE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132.5" y="132.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Successful Login View Controller-->
         <scene sceneID="tRG-Cy-cyq">
             <objects>
-                <viewController id="wv3-S5-G6q" sceneMemberID="viewController">
+                <viewController id="wv3-S5-G6q" customClass="SuccessfulLoginViewController" customModule="Login" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P67-46-ccl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEF-4J-8S3">
+                                <rect key="frame" x="57" y="166" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="QCy-9R-mBu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.060513096603795266" green="0.33317509943788548" blue="0.60041243654822329" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="OEF-4J-8S3" firstAttribute="centerX" secondItem="P67-46-ccl" secondAttribute="centerX" id="JpS-AX-W9e"/>
+                            <constraint firstItem="OEF-4J-8S3" firstAttribute="top" secondItem="zBO-xX-c1R" secondAttribute="top" constant="102" id="eUG-fI-vbG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zBO-xX-c1R"/>
                     </view>
+                    <connections>
+                        <outlet property="successLabel" destination="OEF-4J-8S3" id="a12-Br-Ejx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgn-FJ-ej0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876.875" y="133.75"/>
+            <point key="canvasLocation" x="1876.8115942028987" y="133.69565217391306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zAl-VJ-gIM">
@@ -162,6 +181,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eud-Cg-0xg"/>
+        <segue reference="3he-r0-EAE"/>
     </inferredMetricsTieBreakers>
 </document>
