@@ -351,6 +351,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="registerButton:" destination="AN1-EB-O4Q" eventType="touchUpInside" id="iTH-z5-zY7"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="9Kf-N4-wjX"/>
@@ -367,6 +370,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lTD-Ca-6wG"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordRegisterField" destination="rLC-vF-cuv" id="0nd-Qj-he1"/>
+                        <outlet property="repeatPasswordRegisterField" destination="rHZ-lH-syK" id="mwV-iy-0TQ"/>
+                        <outlet property="usernameRegisterField" destination="6s3-kE-dJm" id="DAi-66-wNK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Guc-xF-xoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
