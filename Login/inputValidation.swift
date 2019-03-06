@@ -10,9 +10,9 @@ import UIKit
 
 class InputValidation {
     
-    let userDictionary = ["Bob": "password", "Mary": "anotherpassword"]
+    var userDictionary = ["Bob": "password", "Mary": "anotherpassword"]
 
-    func checkForEmptyFields(usernameField: UITextField, passwordField: UITextField, reEnterPasswordField: UITextField...) -> String? {
+    func validateInput(loggingIn: Bool, usernameField: UITextField, passwordField: UITextField, reEnterPasswordField: UITextField...) -> String? {
         // check if username was entered
         guard !(usernameField.text == "") else {
             return "Please enter your username"
@@ -28,38 +28,53 @@ class InputValidation {
             return "Unable to parse username"
         }
         
-        // store username in currentUsername variable
+        // store password in currentPassword variable
         guard let currentPassword = passwordField.text else {
             return "Unable to parse password"
         }
         
-        // validate username
+        // create a separate array of just the usernames currently saved
         let usernames = [String](userDictionary.keys)
-        guard usernames.contains(currentUsername) else {
-            return "Invalid username"
-        }
         
-        // validate password
-        guard userDictionary[currentUsername] == currentPassword else {
-            return "Invalid password"
-            
-        }
+        if loggingIn {
         
-        for extraField in reEnterPasswordField {
-            
-            // check if password was re-entered
-            guard !(extraField.text == "") else {
-                return "Please re-enter the password"
+            // validate username
+            guard usernames.contains(currentUsername) else {
+                return "Invalid username"
             }
             
-            // check if passwords match
-            guard extraField.text == passwordField.text else {
-                return "Passwords don't match!"
+            // validate password
+            guard userDictionary[currentUsername] == currentPassword else {
+                return "Invalid password"
+            }
+        
+        } else {
+            
+            // check if username is already taken
+            guard !usernames.contains(currentUsername) else {
+                return "Username already taken, please choose another"
+            }
+        
+            for extraField in reEnterPasswordField {
+                
+                // check if password was re-entered
+                guard !(extraField.text == "") else {
+                    return "Please re-enter the password"
+                }
+                
+                // check if passwords match
+                guard extraField.text == passwordField.text else {
+                    return "Passwords don't match!"
+                }
+                
             }
             
+            // store new user in dictionary
+            userDictionary[currentUsername] = currentPassword
+//            print("User \(currentUsername) with password \(currentPassword) saved in dictionary")
+            print(userDictionary)
         }
-        
-        // if inputs are validated, return nil
+        // if inputs are validated, return nil (no alert message)
         return nil
         
     }

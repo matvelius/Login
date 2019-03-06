@@ -353,6 +353,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="registerButton:" destination="AN1-EB-O4Q" eventType="touchUpInside" id="iTH-z5-zY7"/>
+                                            <segue destination="wv3-S5-G6q" kind="show" identifier="registerButtonSegue" id="h0L-KA-Lcx"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -403,6 +404,6 @@
         <image name="The Fake App" width="375" height="375"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3he-r0-EAE"/>
+        <segue reference="h0L-KA-Lcx"/>
     </inferredMetricsTieBreakers>
 </document>

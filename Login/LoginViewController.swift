@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
             
             // input validation
             let myValidator = InputValidation()
-            let message = myValidator.checkForEmptyFields(usernameField: usernameField, passwordField: passwordField)
+            let message = myValidator.validateInput(loggingIn: true, usernameField: usernameField, passwordField: passwordField)
             if let alertMessage: String = message {
                 alertUser(message: alertMessage)
             }
