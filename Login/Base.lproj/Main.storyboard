@@ -175,28 +175,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcB-UF-KEb">
-                                                <rect key="frame" x="0.0" y="103.33333333333334" width="327" height="39.666666666666657"/>
-                                                <color key="backgroundColor" red="0.52488499365482233" green="0.14306339967806192" blue="0.50141318355950648" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="BJq-fD-Bly"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="Sign Up">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="signupButtonFirstScreen:" destination="p5W-dk-DUi" eventType="touchUpInside" id="8gW-RK-cOM"/>
-                                                    <segue destination="AN1-EB-O4Q" kind="show" id="LiC-BC-io1"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b6-vN-9aa">
-                                                <rect key="frame" x="0.0" y="167" width="327" height="39.666666666666657"/>
+                                                <rect key="frame" x="0.0" y="103.33333333333334" width="327" height="39.666666666666657"/>
                                                 <color key="backgroundColor" red="0.2701434309157566" green="0.38343584930884217" blue="0.80902998096446699" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="czB-sS-4Qt"/>
@@ -213,6 +193,26 @@
                                                 <connections>
                                                     <action selector="loginButtonFirstScreen:" destination="p5W-dk-DUi" eventType="touchUpInside" id="4Ub-Do-wTC"/>
                                                     <segue destination="BYZ-38-t0r" kind="show" id="pmx-yO-70q"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcB-UF-KEb">
+                                                <rect key="frame" x="0.0" y="167" width="327" height="39.666666666666657"/>
+                                                <color key="backgroundColor" red="0.52488499365482233" green="0.14306339967806192" blue="0.50141318355950648" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="BJq-fD-Bly"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signupButtonFirstScreen:" destination="p5W-dk-DUi" eventType="touchUpInside" id="8gW-RK-cOM"/>
+                                                    <segue destination="AN1-EB-O4Q" kind="show" id="LiC-BC-io1"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbz-ug-2oa" userLabel="blank bottom">

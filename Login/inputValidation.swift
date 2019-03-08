@@ -8,9 +8,10 @@
 
 import UIKit
 
+// dictionary for storing usernames & passwords -- DON'T ACTUALLY DO THIS!
+var userDictionary = ["Bob": "password", "Mary": "anotherpassword"]
+
 class InputValidation {
-    
-    var userDictionary = ["Bob": "password", "Mary": "anotherpassword"]
 
     func validateInput(loggingIn: Bool, usernameField: UITextField, passwordField: UITextField, reEnterPasswordField: UITextField...) -> String? {
         // check if username was entered
@@ -48,13 +49,15 @@ class InputValidation {
                 return "Invalid password"
             }
         
+            // registration
         } else {
             
             // check if username is already taken
             guard !usernames.contains(currentUsername) else {
                 return "Username already taken, please choose another"
             }
-        
+            
+            // check passwords
             for extraField in reEnterPasswordField {
                 
                 // check if password was re-entered
@@ -69,10 +72,13 @@ class InputValidation {
                 
             }
             
+//            print("currentUsername: \(currentUsername)")
+//            print("currentPassword: \(currentPassword)")
+            
             // store new user in dictionary
             userDictionary[currentUsername] = currentPassword
-//            print("User \(currentUsername) with password \(currentPassword) saved in dictionary")
-            print(userDictionary)
+            // print("User \(currentUsername) with password \(currentPassword) saved in dictionary")
+//            print(userDictionary)
         }
         // if inputs are validated, return nil (no alert message)
         return nil
