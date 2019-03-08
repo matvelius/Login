@@ -12,11 +12,17 @@ class RegisterViewController: UIViewController {
     
 //    let userDictionary = [String: String]()
     
+    @IBOutlet weak var firstNameRegisterField: UITextField!
+    
+    @IBOutlet weak var lastNameRegisterField: UITextField!
+    
     @IBOutlet weak var usernameRegisterField: UITextField!
     
     @IBOutlet weak var passwordRegisterField: UITextField!
     
     @IBOutlet weak var repeatPasswordRegisterField: UITextField!
+    
+    @IBOutlet weak var makeOfCar: UITextField!
     
     @IBAction func registerButton(_ sender: Any) {
 //        print("hello")
@@ -33,7 +39,18 @@ class RegisterViewController: UIViewController {
         
         // input validation
         let myValidator = InputValidation()
-        let message = myValidator.validateInput(loggingIn: false, usernameField: usernameRegisterField, passwordField: passwordRegisterField, reEnterPasswordField: repeatPasswordRegisterField)
+        
+        let message = myValidator.validateInput(
+            loggingIn: false,
+            usernameField: usernameRegisterField,
+            passwordField: passwordRegisterField,
+            reEnterPasswordField: repeatPasswordRegisterField,
+            firstnameField: firstNameRegisterField,
+            lastnameField: lastNameRegisterField,
+            firstCarField: makeOfCar
+        )
+        
+        // if there's a problem during validation, alert user
         if let alertMessage: String = message {
             alertUser(message: alertMessage)
         }

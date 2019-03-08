@@ -46,7 +46,8 @@ class LoginViewController: UIViewController {
             
             // input validation
             let myValidator = InputValidation()
-            let message = myValidator.validateInput(loggingIn: true, usernameField: usernameField, passwordField: passwordField)
+//            let message = myValidator.validateInput(loggingIn: true, usernameField: usernameField, passwordField: passwordField)
+            let message = myValidator.validateInput(loggingIn: true, usernameField: usernameField, passwordField: passwordField, reEnterPasswordField: nil, firstnameField: nil, lastnameField: nil, firstCarField: nil)
             if let alertMessage: String = message {
                 alertUser(message: alertMessage)
             }

@@ -22,6 +22,16 @@ class FirstScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // initialize a couple of users for testing
+        let userBob = User(firstName: "Bob", lastName: "Jones", username: "bobjones", password: "password", firstCar: "Ford")
+        
+        let userNatasha = User(firstName: "Natasha", lastName: "Ivanova", username: "natasha", password: "password", firstCar: "Toyota")
+        
+        activeUsers.append(userBob)
+        activeUsers.append(userNatasha)
+        
+        print(activeUsers)
 //        logo.layer.cornerRadius = 10
 //        logo.clipsToBounds = true
 //        logo.layer.borderWidth = 3
