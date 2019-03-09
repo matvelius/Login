@@ -8,12 +8,44 @@
 
 import UIKit
 
-// dictionary for storing usernames & passwords -- DON'T ACTUALLY DO THIS!
-var userDictionary = ["Bob": "password", "Mary": "anotherpassword"]
+
+class User: CustomStringConvertible {
+    
+    let firstName: String
+    let lastName: String
+    let username: String
+    let password: String
+    let firstCar: String
+    
+    init(firstName: String, lastName: String, username: String, password: String, firstCar: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.username = username
+        self.password = password
+        self.firstCar = firstCar
+    }
+    
+    var description: String {
+        return "\(firstName) \(lastName), username: \(username)"
+    }
+    
+}
+
+// dictionary for storing usernames & passwords
+// -- DON'T ACTUALLY DO THIS IN PRODUCTION!
+var activeUsers:[User] = []
 
 class InputValidation {
 
-    func validateInput(loggingIn: Bool, usernameField: UITextField, passwordField: UITextField, reEnterPasswordField: UITextField...) -> String? {
+    func validateInput(
+        loggingIn: Bool,
+        usernameField: UITextField,
+        passwordField: UITextField,
+        reEnterPasswordField: UITextField?,
+        firstnameField: UITextField?,
+        lastnameField: UITextField?,
+        firstCarField: UITextField?) -> String? {
+    
         // check if username was entered
         guard !(usernameField.text == "") else {
             return "Please enter your username"
@@ -34,58 +66,76 @@ class InputValidation {
             return "Unable to parse password"
         }
         
-        // create a separate array of just the usernames currently saved
-        let usernames = [String](userDictionary.keys)
-        
         if loggingIn {
-        
-            // validate username
-            guard usernames.contains(currentUsername) else {
-                return "Invalid username"
+            
+            // check username & password
+            for user in activeUsers {
+                
+                // check username
+                if user.username == currentUsername {
+                    
+                    // check password
+                    if user.password == currentPassword {
+                        return nil
+                    } else {
+                        return "Incorrect password."
+                    }
+   
+                }
             }
             
-            // validate password
-            guard userDictionary[currentUsername] == currentPassword else {
-                return "Invalid password"
-            }
-        
-            // registration
+            // user not found
+            return "Incorrect username."
+
+        // REGISTRATION
         } else {
             
+            // check if first name was entered
+            guard (firstnameField != nil) && !(firstnameField?.text == "") else { return "Please enter your first name." }
+            
+            let currentFirstName = (firstnameField?.text)!
+            
+            // check if last name was entered
+            guard (lastnameField != nil) && !(lastnameField?.text == "") else { return "Please enter your last name." }
+            
+            let currentLastName = (lastnameField?.text)!
+            
+            // check if password was entered 2nd time
+            guard (reEnterPasswordField != nil) && !(reEnterPasswordField?.text == "") else { return "Please re-enter the password." }
+            
+            let currentReEnteredPassword = (reEnterPasswordField?.text)!
+            
+            // check if passwords don't match
+            guard currentReEnteredPassword == currentPassword else {
+                return "Passwords don't match!"
+            }
+            
+            // check if security question was answered
+            guard (firstCarField != nil) && !(firstCarField?.text == "") else { return "Please enter the make of your first car." }
+            
+            let currentFirstCar = (firstCarField?.text)!
+            
             // check if username is already taken
-            guard !usernames.contains(currentUsername) else {
-                return "Username already taken, please choose another"
+            for user in activeUsers {
+                // check username
+                if user.username == currentUsername {
+                    return "Username already taken, please choose another."
+                }
             }
             
-            // check passwords
-            for extraField in reEnterPasswordField {
-                
-                // check if password was re-entered
-                guard !(extraField.text == "") else {
-                    return "Please re-enter the password"
-                }
-                
-                // check if passwords match
-                guard extraField.text == passwordField.text else {
-                    return "Passwords don't match!"
-                }
-                
-            }
+            // instantiate new user
+            let newUser = User(firstName: currentFirstName, lastName: currentLastName, username: currentUsername, password: currentPassword, firstCar: currentFirstCar)
             
-//            print("currentUsername: \(currentUsername)")
-//            print("currentPassword: \(currentPassword)")
+            // store new user in users array
+            activeUsers.append(newUser)
             
-            // store new user in dictionary
-            userDictionary[currentUsername] = currentPassword
-            // print("User \(currentUsername) with password \(currentPassword) saved in dictionary")
-//            print(userDictionary)
-        }
+            print(activeUsers)
+            
+        } // end registration
+        
         // if inputs are validated, return nil (no alert message)
         return nil
         
-    }
+    } // end validate input function
     
-    
-    
-
-}
+} // end class InputValidation
