@@ -10,8 +10,6 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-//    let userDictionary = [String: String]()
-    
     @IBOutlet weak var firstNameRegisterField: UITextField!
     
     @IBOutlet weak var lastNameRegisterField: UITextField!
@@ -25,8 +23,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var makeOfCar: UITextField!
     
     @IBAction func registerButton(_ sender: Any) {
-//        print("hello")
-//        performSegue(withIdentifier: "registerButtonSegue", sender: registerButton)
+        // do I even need this?
     }
     
     override func viewDidLoad() {
@@ -42,6 +39,8 @@ class RegisterViewController: UIViewController {
         
         let message = myValidator.validateInput(
             loggingIn: false,
+            forgotUsername: false,
+            forgotPassword: false,
             usernameField: usernameRegisterField,
             passwordField: passwordRegisterField,
             reEnterPasswordField: repeatPasswordRegisterField,
