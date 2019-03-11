@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
         // input validation
         let myValidator = InputValidation()
         
-        let message = myValidator.validateInput(
+        let (title, message) = myValidator.validateInput(
             loggingIn: false,
             forgotUsername: false,
             forgotPassword: false,
@@ -49,10 +49,21 @@ class RegisterViewController: UIViewController {
             firstCarField: makeOfCar
         )
         
-        // if there's a problem during validation, alert user
-        if let alertMessage: String = message {
-            alertUser(message: alertMessage)
+        if let alertTitle: String = title, let alertMessage: String = message {
+            alertUser(title: alertTitle, message: alertMessage)
         }
+        
+//        alertUser(title: alertTitle, message: alertMessage)
+        
+//        // if there's a problem during validation, alert user
+//        if let alertMessage: String = message {
+//            alertUser(message: alertMessage)
+//        }
+//
+//        // if there's a problem during validation, alert user
+//        if let alertTitle: String = title {
+//            alertUser(message: alertMessage)
+//        }
         
         guard let successfulLogin = segue.destination as? SuccessfulLoginViewController else { return }
         
@@ -62,8 +73,8 @@ class RegisterViewController: UIViewController {
         
     }
     
-    func alertUser(message: String) {
-        let title = "Error"
+    func alertUser(title: String, message: String) {
+        let title = title
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: { action in })

@@ -19,11 +19,11 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func forgotUsernameButton(_ sender: Any) {
-        performSegue(withIdentifier: "mySegue", sender: forgotUsernameButtonOutlet)
+//        performSegue(withIdentifier: "mySegue", sender: forgotUsernameButtonOutlet)
     }
     
     @IBAction func forgotPasswordButton(_ sender: Any) {
-        performSegue(withIdentifier: "mySegue", sender: forgotPasswordButtonOutlet)
+//        performSegue(withIdentifier: "mySegue", sender: forgotPasswordButtonOutlet)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,19 +35,19 @@ class LoginViewController: UIViewController {
         guard let sender: UIButton = sender as? UIButton else { return }
         
         if sender == forgotPasswordButtonOutlet {
-            
+
             segue.destination.navigationItem.title = "Forgot Password"
-            
+
         } else if sender == forgotUsernameButtonOutlet {
-            
+
             segue.destination.navigationItem.title = "Forgot Username"
-            
+
         } else {
-            
+        
             // input validation
             let myValidator = InputValidation()
 
-            let message = myValidator.validateInput(
+            let (title, message) = myValidator.validateInput(
                 loggingIn: true,
                 forgotUsername: false,
                 forgotPassword: false,
@@ -58,8 +58,8 @@ class LoginViewController: UIViewController {
                 lastnameField: nil,
                 firstCarField: nil)
             
-            if let alertMessage: String = message {
-                alertUser(message: alertMessage)
+            if let alertTitle: String = title, let alertMessage: String = message {
+                alertUser(title: alertTitle, message: alertMessage)
             }
             
             guard let successfulLogin = segue.destination as? SuccessfulLoginViewController else { return }
@@ -71,8 +71,8 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func alertUser(message: String) {
-        let title = "Error"
+    func alertUser(title: String, message: String) {
+        let title = title
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "OK", style: .default, handler: { action in })

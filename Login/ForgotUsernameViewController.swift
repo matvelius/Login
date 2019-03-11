@@ -17,13 +17,13 @@ class ForgotUsernameViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var carField: UITextField!
-    
-    @IBAction func retrieveUsernameButton(_ sender: Any) {
         
+    @IBAction func retrieveUsernameButton(_ sender: Any) {
+
         // input validation
         let myValidator = InputValidation()
         
-        let message = myValidator.validateInput(
+        let (title, message) = myValidator.validateInput(
             loggingIn: false,
             forgotUsername: true,
             forgotPassword: false,
@@ -32,29 +32,37 @@ class ForgotUsernameViewController: UIViewController {
             reEnterPasswordField: nil,
             firstnameField: firstNameField,
             lastnameField: lastNameField,
-            firstCarField: carField)
+            firstCarField: carField
+        )
         
-        if let alertMessage: String = message {
-            alertUser(message: alertMessage)
+        
+        if let alertTitle: String = title, let alertMessage: String = message {
+            alertUser(title: alertTitle, message: alertMessage)
         }
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    func alertUser(message: String) {
-        let title = "Error"
+    func alertUser(title: String, message: String) {
+        
+        let title = title
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .default, handler: { action in })
+        let action = UIAlertAction(title: "OK", style: .default, handler: {
+            action in if title == "Success" {
+                self.performSegue(withIdentifier: "backToLogin", sender: nil)
+            }
+            
+        })
         
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
+        
     }
 
     /*
