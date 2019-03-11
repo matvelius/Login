@@ -61,12 +61,12 @@ class InputValidation {
                 return ("Error", "Please enter your password.")
             }
             
-            // store username in currentUsername variable
+            // store username in the currentUsername variable
             guard let currentUsername = usernameField?.text else {
                 return ("Error", "Unable to parse username.")
             }
             
-            // store password in currentPassword variable
+            // store password in the currentPassword variable
             guard let currentPassword = passwordField?.text else {
                 return ("Error", "Unable to parse password.")
             }
