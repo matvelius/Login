@@ -31,6 +31,7 @@ class User: CustomStringConvertible {
     
 }
 
+//
 // dictionary for storing usernames & passwords
 // -- DON'T ACTUALLY DO THIS IN PRODUCTION!
 var activeUsers:[User] = []
@@ -46,28 +47,28 @@ class InputValidation {
         reEnterPasswordField: UITextField?,
         firstnameField: UITextField?,
         lastnameField: UITextField?,
-        firstCarField: UITextField?) -> String? {
+        firstCarField: UITextField?) -> (String?, String?) {
         
         if loggingIn {
             
-            // check if username was entered
+            // check if the username was entered 
             guard !(usernameField?.text == "") else {
-                return "Please enter your username"
+                return ("Error", "Please enter your username.")
             }
             
             // check if password was entered
             guard !(passwordField?.text == "") else {
-                return "Please enter your password"
+                return ("Error", "Please enter your password.")
             }
             
             // store username in currentUsername variable
             guard let currentUsername = usernameField?.text else {
-                return "Unable to parse username"
+                return ("Error", "Unable to parse username.")
             }
             
             // store password in currentPassword variable
             guard let currentPassword = passwordField?.text else {
-                return "Unable to parse password"
+                return ("Error", "Unable to parse password.")
             }
             
             // check username & password
@@ -78,42 +79,42 @@ class InputValidation {
                     
                     // check password
                     if user.password == currentPassword {
-                        return nil
+                        return (nil, nil)
                     } else {
-                        return "Incorrect password."
+                        return ("Error", "Incorrect password.")
                     }
    
                 }
             }
             
             // user not found
-            return "Incorrect username."
+            return ("Error", "Incorrect username.")
 
         } else if forgotUsername {
             
             
             // check if first name was entered
-            guard (firstnameField != nil) && !(firstnameField?.text == "") else { return "Please enter your first name." }
+            guard (firstnameField != nil) && !(firstnameField?.text == "") else { return ("Error", "Please enter your first name.") }
             
             let currentFirstName = (firstnameField?.text)!
             
             // check if last name was entered
-            guard (lastnameField != nil) && !(lastnameField?.text == "") else { return "Please enter your last name." }
+            guard (lastnameField != nil) && !(lastnameField?.text == "") else { return ("Error", "Please enter your last name.") }
             
             let currentLastName = (lastnameField?.text)!
             
             // check if password was entered
             guard !(passwordField?.text == "") else {
-                return "Please enter your password"
+                return ("Error", "Please enter your password")
             }
             
             // store password in currentPassword variable
             guard let currentPassword = passwordField?.text else {
-                return "Unable to parse password"
+                return ("Error", "Unable to parse password")
             }
             
             // check if security question was answered
-            guard (firstCarField != nil) && !(firstCarField?.text == "") else { return "Please enter the make of your first car." }
+            guard (firstCarField != nil) && !(firstCarField?.text == "") else { return ("Error", "Please enter the make of your first car.") }
             
             let currentFirstCar = (firstCarField?.text)!
             
@@ -124,63 +125,63 @@ class InputValidation {
                     
                     // check if password & first car match
                     if user.password == currentPassword && user.firstCar == currentFirstCar {
-                        return ("Your username is \(user.username)")
+                        return ("Success", "Your username is \(user.username)")
                     } else {
-                        return ("Could not retrieve the username - please check your password and security answer.")
+                        return ("Error", "Could not retrieve the username - please check your password and security answer.")
                     }
                 } else {
-                    return "Could not find a user with the provided first name and/or last name."
+                    return ("Error", "Could not find a user with the provided first name and/or last name.")
                 }
             }
             
         } else if forgotPassword {
             
-            
+            return (nil, nil)
         // REGISTRATION
         } else {
             
             // check if username was entered
             guard !(usernameField?.text == "") else {
-                return "Please enter your username"
+                return ("Error", "Please enter your username.")
             }
             
             // check if password was entered
             guard !(passwordField?.text == "") else {
-                return "Please enter your password"
+                return ("Error", "Please enter your password.")
             }
             
             // store username in currentUsername variable
             guard let currentUsername = usernameField?.text else {
-                return "Unable to parse username"
+                return ("Error", "Unable to parse username.")
             }
             
             // store password in currentPassword variable
             guard let currentPassword = passwordField?.text else {
-                return "Unable to parse password"
+                return ("Error", "Unable to parse password")
             }
             
             // check if first name was entered
-            guard (firstnameField != nil) && !(firstnameField?.text == "") else { return "Please enter your first name." }
+            guard (firstnameField != nil) && !(firstnameField?.text == "") else { return ("Error", "Please enter your first name.") }
             
             let currentFirstName = (firstnameField?.text)!
             
             // check if last name was entered
-            guard (lastnameField != nil) && !(lastnameField?.text == "") else { return "Please enter your last name." }
+            guard (lastnameField != nil) && !(lastnameField?.text == "") else { return ("Error", "Please enter your last name.") }
             
             let currentLastName = (lastnameField?.text)!
             
             // check if password was entered 2nd time
-            guard (reEnterPasswordField != nil) && !(reEnterPasswordField?.text == "") else { return "Please re-enter the password." }
+            guard (reEnterPasswordField != nil) && !(reEnterPasswordField?.text == "") else { return ("Error", "Please re-enter the password.") }
             
             let currentReEnteredPassword = (reEnterPasswordField?.text)!
             
             // check if passwords don't match
             guard currentReEnteredPassword == currentPassword else {
-                return "Passwords don't match!"
+                return ("Error", "Passwords don't match!")
             }
             
             // check if security question was answered
-            guard (firstCarField != nil) && !(firstCarField?.text == "") else { return "Please enter the make of your first car." }
+            guard (firstCarField != nil) && !(firstCarField?.text == "") else { return ("Error", "Please enter the make of your first car.") }
             
             let currentFirstCar = (firstCarField?.text)!
             
@@ -188,7 +189,7 @@ class InputValidation {
             for user in activeUsers {
                 // check username
                 if user.username == currentUsername {
-                    return "Username already taken, please choose another."
+                    return ("Error", "Username already taken, please choose another.")
                 }
             }
             
@@ -209,7 +210,7 @@ class InputValidation {
         } // end registration
         
         // if inputs are validated, return nil (no alert message)
-        return nil
+        return (nil, nil)
         
     } // end validate input function
     
