@@ -41,6 +41,7 @@ class RegisterViewController: UIViewController {
             loggingIn: false,
             forgotUsername: false,
             forgotPassword: false,
+            resetPassword: false,
             usernameField: usernameRegisterField,
             passwordField: passwordRegisterField,
             reEnterPasswordField: repeatPasswordRegisterField,

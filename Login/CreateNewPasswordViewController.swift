@@ -1,41 +1,38 @@
 //
-//  ForgotUsernameViewController.swift
+//  CreateNewPasswordViewController.swift
 //  Login
 //
-//  Created by Matvey on 3/10/19.
+//  Created by Matvey on 3/11/19.
 //  Copyright © 2019 Matvey. All rights reserved.
 //
 
 import UIKit
 
-class ForgotUsernameViewController: UIViewController {
+class CreateNewPasswordViewController: UIViewController {
+    
+    @IBOutlet weak var usernameField: UITextField!
+    
+    @IBOutlet weak var newPasswordField: UITextField!
+    
+    @IBOutlet weak var repeatPasswordField: UITextField!
 
-    @IBOutlet weak var firstNameField: UITextField!
-    
-    @IBOutlet weak var lastNameField: UITextField!
-    
-    @IBOutlet weak var passwordField: UITextField!
-    
-    @IBOutlet weak var carField: UITextField!
+    @IBAction func resetPassword(_ sender: Any) {
         
-    @IBAction func retrieveUsernameButton(_ sender: Any) {
-
         // input validation
         let myValidator = InputValidation()
         
         let (title, message) = myValidator.validateInput(
             loggingIn: false,
-            forgotUsername: true,
+            forgotUsername: false,
             forgotPassword: false,
-            resetPassword: false,
-            usernameField: nil,
-            passwordField: passwordField,
-            reEnterPasswordField: nil,
-            firstnameField: firstNameField,
-            lastnameField: lastNameField,
-            firstCarField: carField
+            resetPassword: true,
+            usernameField: usernameField,
+            passwordField: newPasswordField,
+            reEnterPasswordField: repeatPasswordField,
+            firstnameField: nil,
+            lastnameField: nil,
+            firstCarField: nil
         )
-        
         
         if let alertTitle: String = title, let alertMessage: String = message {
             alertUser(title: alertTitle, message: alertMessage)
@@ -43,10 +40,10 @@ class ForgotUsernameViewController: UIViewController {
         
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     
     func alertUser(title: String, message: String) {
         
@@ -55,7 +52,7 @@ class ForgotUsernameViewController: UIViewController {
         
         let action = UIAlertAction(title: "OK", style: .default, handler: {
             action in if title == "Success" {
-                self.performSegue(withIdentifier: "backToLogin", sender: nil)
+                self.performSegue(withIdentifier: "backToLoginFromReset", sender: nil)
             }
             
         })

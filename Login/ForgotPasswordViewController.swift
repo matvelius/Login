@@ -1,35 +1,35 @@
 //
-//  ForgotUsernameViewController.swift
+//  ForgotPasswordViewController.swift
 //  Login
 //
-//  Created by Matvey on 3/10/19.
+//  Created by Matvey on 3/11/19.
 //  Copyright © 2019 Matvey. All rights reserved.
 //
 
 import UIKit
 
-class ForgotUsernameViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController {
 
     @IBOutlet weak var firstNameField: UITextField!
     
     @IBOutlet weak var lastNameField: UITextField!
     
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var carField: UITextField!
+    
+    @IBAction func resetPasswordButton(_ sender: Any) {
         
-    @IBAction func retrieveUsernameButton(_ sender: Any) {
-
         // input validation
         let myValidator = InputValidation()
         
         let (title, message) = myValidator.validateInput(
             loggingIn: false,
-            forgotUsername: true,
-            forgotPassword: false,
+            forgotUsername: false,
+            forgotPassword: true,
             resetPassword: false,
-            usernameField: nil,
-            passwordField: passwordField,
+            usernameField: usernameField,
+            passwordField: nil,
             reEnterPasswordField: nil,
             firstnameField: firstNameField,
             lastnameField: lastNameField,
@@ -40,12 +40,11 @@ class ForgotUsernameViewController: UIViewController {
         if let alertTitle: String = title, let alertMessage: String = message {
             alertUser(title: alertTitle, message: alertMessage)
         }
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
     func alertUser(title: String, message: String) {
@@ -55,7 +54,7 @@ class ForgotUsernameViewController: UIViewController {
         
         let action = UIAlertAction(title: "OK", style: .default, handler: {
             action in if title == "Success" {
-                self.performSegue(withIdentifier: "backToLogin", sender: nil)
+                self.performSegue(withIdentifier: "resetPasswordSegue", sender: nil)
             }
             
         })

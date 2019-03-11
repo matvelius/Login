@@ -24,9 +24,9 @@ class FirstScreenViewController: UIViewController {
         super.viewDidLoad()
         
         // initialize a couple of users for testing
-        let userBob = User(firstName: "Bob", lastName: "Jones", username: "bobjones", password: "password", firstCar: "Ford")
+        let userBob = User(firstName: "Bob", lastName: "Jones", username: "bobjones", password: "password", firstCar: "Ford", loginCounter: 0)
         
-        let userNatasha = User(firstName: "Natasha", lastName: "Ivanova", username: "natasha", password: "password", firstCar: "Toyota")
+        let userNatasha = User(firstName: "Natasha", lastName: "Ivanova", username: "natasha", password: "password", firstCar: "Toyota", loginCounter: 0)
         
         activeUsers.append(userBob)
         activeUsers.append(userNatasha)

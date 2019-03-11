@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,6 +51,7 @@ class LoginViewController: UIViewController {
                 loggingIn: true,
                 forgotUsername: false,
                 forgotPassword: false,
+                resetPassword: false,
                 usernameField: usernameField,
                 passwordField: passwordField,
                 reEnterPasswordField: nil,
